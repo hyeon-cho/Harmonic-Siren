@@ -1,0 +1,6 @@
+_base_:
+  - cfgs/General/ReSIN.yaml
+
+model:
+  args:
+    hidden_channels: 300

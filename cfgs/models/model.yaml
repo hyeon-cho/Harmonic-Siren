@@ -1,0 +1,14 @@
+model: 
+  name: MININR-ol
+  args: 
+    in_channels: 2
+    hidden_channels: 768
+    out_channels: 24
+
+    bias: False
+    recurrent_steps: 5
+    omega_0: 
+      # for better SR quality, reduce the first omega_0 value (e.g., 256 -> 150)
+      first:  256
+      hidden: 45
+ 

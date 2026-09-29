@@ -1,0 +1,69 @@
+random_seed: 42
+COMPETITION_NAME: NA
+
+_base_:
+  - cfgs/models/model.yaml
+  - cfgs/trainers/overfit.yaml
+
+datasets:
+  train: 
+    wrapper:
+      name: mini-base 
+      args: 
+        dataset: 
+          name: image-folder
+          args: 
+            root_path: loads/CVPR_Set5_HR/0002
+            repeat: 10 
+            cache: bin
+        init_down: 1
+        center_crop: True
+        resize: 256
+        coord_config: 
+          range: [[0, 1], [0, 1]]
+          range_division: [1,1]  
+
+        sr_config: 
+          scale_factor: 1
+          patch_size: [256,256]  ## Proper Patch Size 
+        sample_q: 0
+
+        bipolar_out: True
+        transformer: gray
+        valid: False 
+
+    loader: 
+      batch_size: 1 
+      shuffle: False
+      num_workers: 1
+
+  valid:
+    wrapper:
+      name: mini-base 
+      args:
+        dataset: 
+          name: image-folder
+          args: 
+            root_path: loads/CVPR_Set5_HR/0002
+            repeat: 1
+            cache: bin
+        init_down: 1 
+        center_crop: True
+        resize: 256
+        coord_config: 
+          range: [[0, 1], [0, 1]]
+          range_division: [1,1] 
+
+        sr_config: 
+          scale_factor: 2
+          patch_size: [256,256]
+        sample_q: 0
+
+        bipolar_out: True
+        transformer: gray
+        valid: True
+
+    loader: 
+      batch_size: 1 
+      shuffle: False
+      num_workers: 1

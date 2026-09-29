@@ -1,0 +1,21 @@
+trainer: base_trainer_final
+
+max_iteration: 10000 
+iteration_per_epoch: 1
+
+save_epoch: 1
+eval_epoch: 1
+
+loss: ReSINLoss 
+
+optimizer:
+  name: adamw 
+  args: {lr: 1.5e-4, betas: [0.9, 0.999]} 
+
+  schedulers:
+    name: ~ #cosine
+    args: {T_max: 200, #200, 
+           eta_min: 0.0, 
+           }
+
+find_unused_parameters: true

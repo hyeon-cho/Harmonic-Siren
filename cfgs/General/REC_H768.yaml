@@ -1,0 +1,19 @@
+_base_:
+  - cfgs/General/ReSIN_H768.yaml
+
+trainer_mode: rec
+loss_wrapper: identity
+
+model:
+  args:
+    out_channels: 3
+
+datasets:
+  train:
+    wrapper:
+      args:
+        bit_decompose: false
+  valid:
+    wrapper:
+      args:
+        bit_decompose: false

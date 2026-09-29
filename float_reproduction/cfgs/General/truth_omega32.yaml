@@ -1,0 +1,108 @@
+COMPETITION_NAME: NA
+datasets:
+  train:
+    loader:
+      batch_size: 1
+      num_workers: 1
+      shuffle: false
+    wrapper:
+      args:
+        bipolar_out: true
+        center_crop: true
+        coord_config:
+          range:
+          - - 0
+            - 1
+          - - 0
+            - 1
+          range_division:
+          - 1
+          - 1
+        dataset:
+          args:
+            cache: bin
+            repeat: 10
+            root_path: loads/CVPR_Set5_HR/0002
+          name: image-folder
+        init_down: 1
+        resize: 256
+        sample_q: 0
+        sr_config:
+          patch_size:
+          - 256
+          - 256
+          scale_factor: 1
+        transformer: gray
+        valid: false
+      name: mini-float
+  valid:
+    loader:
+      batch_size: 1
+      num_workers: 1
+      shuffle: false
+    wrapper:
+      args:
+        bipolar_out: true
+        center_crop: true
+        coord_config:
+          range:
+          - - 0
+            - 1
+          - - 0
+            - 1
+          range_division:
+          - 1
+          - 1
+        dataset:
+          args:
+            cache: bin
+            repeat: 1
+            root_path: loads/CVPR_Set5_HR/0002
+          name: image-folder
+        init_down: 1
+        resize: 256
+        sample_q: 0
+        sr_config:
+          patch_size:
+          - 256
+          - 256
+          scale_factor: 2
+        transformer: gray
+        valid: true
+      name: mini-float
+eval_epoch: 1
+find_unused_parameters: true
+iteration_per_epoch: 1
+jacobian_layer_max_samples: 32
+jacobian_max_samples: 1024
+log_image_evolution: true
+log_jacobian_metrics: true
+log_recurrent_param_metrics: true
+loss: MSELoss
+max_iteration: 5010
+model:
+  args:
+    bias: false
+    hidden_channels: 768
+    in_channels: 2
+    omega_0:
+      first: 32
+      hidden: 64
+    out_channels: 3
+    recurrent_steps: 5
+  name: MININR-ol
+optimizer:
+  args:
+    betas:
+    - 0.9
+    - 0.999
+    lr: 0.00015
+  name: adamw
+  schedulers:
+    args:
+      T_max: 200
+      eta_min: 0.0
+    name: null
+random_seed: 0
+save_epoch: 1
+trainer: float_trainer_final

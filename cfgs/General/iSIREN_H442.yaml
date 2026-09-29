@@ -1,0 +1,37 @@
+_base_:
+  - cfgs/General/ReSIN.yaml
+
+trainer_mode: mse
+loss: MSE
+outer_non_linearity: linear
+loss_wrapper: identity
+max_iteration: 1000
+
+model:
+  name: iSIREN
+  args:
+    in_channels: 2
+    hidden_channels: 442
+    out_channels: 3
+    n_layers: 4
+    input_scale: 256.0
+    max_iter: 30
+    tol: 1.0e-3
+
+datasets:
+  train:
+    wrapper:
+      args:
+        bipolar_out: false
+        bit_decompose: false
+        coord_config:
+          range: [[-1, 1], [-1, 1]]
+          range_division: [1, 1]
+  valid:
+    wrapper:
+      args:
+        bipolar_out: false
+        bit_decompose: false
+        coord_config:
+          range: [[-1, 1], [-1, 1]]
+          range_division: [1, 1]

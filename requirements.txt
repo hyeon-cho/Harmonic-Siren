@@ -1,0 +1,20 @@
+# Install a CUDA-compatible torch/torchvision pair for your system first.
+torch>=2.1
+torchvision
+omegaconf
+einops
+numpy
+Pillow>=9.1
+imageio
+PyYAML
+scikit-image
+scipy
+tqdm
+tensorboardX
+lpips
+wandb
+matplotlib
+configargparse
+trimesh
+plyfile
+tensorboard
